@@ -1,4 +1,4 @@
-import { addNewTask } from "../tasks/taskManager.js";
+import { addNewTask, updateTasks } from "../tasks/taskManager.js";
 
 export function setupModalCloseHandler() {
   const modal = document.getElementById("task-modal");
@@ -28,38 +28,38 @@ export function setupNewTaskModalHandler() {
     }
   });
 }
-
+// Handler for saving edits to an existing task
 export function setupExistingTaskModalHandler() {
   const modal = document.getElementById("task-modal");
   const form = document.getElementById("task-form"); 
-  const closeBtn = document.getElementById("close-modal-btn"); 
   const saveBtn = document.getElementById("save-task-btn");
   const deleteBtn = document.getElementById("delete-task-btn"); 
 
-  form.addEventListener("submit", (e) => {
+  saveBtn.addEventListener("click", async (e) => {
     e.preventDefault();
 
     const title = document.getElementById("task-title").value.trim();
     const description = document.getElementById("task-desc").value.trim();
     const status = document.getElementById("task-status").value;
 
-    if (!title) {
-      alert("Title cannot be empty.");
+    if (!title || !status || !description) {
+      alert("Please fill in all fields.");
       return;
     }
-
-    saveBtn.addEventListener("click", () => {
-      modal.close();
-    })
-
-    updateTasks(updatedTask);
+    await updateTasks({
+      id: parseInt(form.dataset.taskId, 10),
+      title,
+      description,
+      status});
+    modal.close();
   });
 }
 
-
-
 export function openTaskModal(task) {
   const modal = document.getElementById("task-modal");
+  const form = document.getElementById("task-form");
+  form.dataset.taskId = task.id; // store task ID in form dataset
+
   document.getElementById("task-title").value = task.title;
   document.getElementById("task-desc").value = task.description;
   document.getElementById("task-status").value = task.status;

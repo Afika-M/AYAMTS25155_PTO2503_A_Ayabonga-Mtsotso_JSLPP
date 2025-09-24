@@ -34,15 +34,20 @@ alert("Failed to add new task. Please try again.");
 }
 }
 
-export async function updateTasks(updatedTask) {    
+export async function updateTasks(updatedTask) {
   const tasks = await loadTasksFromStorage();
   const taskIndex = tasks.findIndex((task) => task.id === updatedTask.id);
-  
-  saveTasksToStorage(tasks);
-  clearExistingTasks();
-  renderTasks(updateTasksasks);
-  console.log("Task updated successfully:", updatedTask);
+
+  if (taskIndex !== -1) {
+    tasks[taskIndex] = updatedTask; // Replace the existing task
+    saveTasksToStorage(tasks);
+    clearExistingTasks();
+    renderTasks(tasks);
+    console.log("Task updated successfully:", updatedTask);
+  } else {
+    console.warn("Task not found:", updatedTask.id);
   }
+}
 
 /*export async function editExistingTask(taskId, updatedData) {
   try {
@@ -74,4 +79,3 @@ export async function deleteTask(taskId) {
     console.error("Error deleting task", error);
     alert("Failed to delete task. Please try again.");
   }*/
-
