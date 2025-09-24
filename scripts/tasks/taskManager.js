@@ -33,3 +33,45 @@ export async function addNewTask() {
 alert("Failed to add new task. Please try again.");
 }
 }
+
+export async function updateTasks(updatedTask) {    
+  const tasks = await loadTasksFromStorage();
+  const taskIndex = tasks.findIndex((task) => task.id === updatedTask.id);
+  
+  saveTasksToStorage(tasks);
+  clearExistingTasks();
+  renderTasks(updateTasksasks);
+  console.log("Task updated successfully:", updatedTask);
+  }
+
+/*export async function editExistingTask(taskId, updatedData) {
+  try {
+    const tasks = await loadTasksFromStorage();
+    const taskIndex = tasks.findIndex((task) => task.id === taskId);
+    const updatedTask = { ...tasks[taskIndex], ...updatedData };
+    const updatedTasks = [...tasks];
+    updatedTasks[taskIndex] = updatedTask;
+
+    saveTasksToStorage(updatedTasks);
+
+    clearExistingTasks();
+    renderTasks(updatedTasks);
+  } catch (error) {
+    console.error("Error editing task", error);
+    alert("Failed to edit task. Please try again.");
+  }
+}
+
+export async function deleteTask(taskId) {
+  try {
+    const tasks = await loadTasksFromStorage();
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    saveTasksToStorage(updatedTasks);
+
+    clearExistingTasks();
+    renderTasks(updatedTasks);
+  } catch (error) {
+    console.error("Error deleting task", error);
+    alert("Failed to delete task. Please try again.");
+  }*/
+

@@ -29,10 +29,40 @@ export function setupNewTaskModalHandler() {
   });
 }
 
+export function setupExistingTaskModalHandler() {
+  const modal = document.getElementById("task-modal");
+  const form = document.getElementById("task-form"); 
+  const closeBtn = document.getElementById("close-modal-btn"); 
+  const saveBtn = document.getElementById("save-task-btn");
+  const deleteBtn = document.getElementById("delete-task-btn"); 
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const title = document.getElementById("task-title").value.trim();
+    const description = document.getElementById("task-desc").value.trim();
+    const status = document.getElementById("task-status").value;
+
+    if (!title) {
+      alert("Title cannot be empty.");
+      return;
+    }
+
+    saveBtn.addEventListener("click", () => {
+      modal.close();
+    })
+
+    updateTasks(updatedTask);
+  });
+}
+
+
+
 export function openTaskModal(task) {
   const modal = document.getElementById("task-modal");
   document.getElementById("task-title").value = task.title;
   document.getElementById("task-desc").value = task.description;
   document.getElementById("task-status").value = task.status;
+
   modal.showModal();
 }
