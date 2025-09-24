@@ -49,6 +49,21 @@ export async function updateTasks(updatedTask) {
   }
 }
 
+export async function deleteTask(taskId) {
+  try {
+    const tasks = await loadTasksFromStorage();
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    saveTasksToStorage(updatedTasks);
+
+    clearExistingTasks();
+    renderTasks(updatedTasks);
+    console.log("Task deleted successfully:", taskId);
+  } catch (error) {
+    console.error("Error deleting task", error);
+    alert("Failed to delete task. Please try again.");
+  }
+} 
+
 /*export async function editExistingTask(taskId, updatedData) {
   try {
     const tasks = await loadTasksFromStorage();

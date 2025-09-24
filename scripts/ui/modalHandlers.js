@@ -1,4 +1,4 @@
-import { addNewTask, updateTasks } from "../tasks/taskManager.js";
+import { addNewTask, updateTasks, deleteTask } from "../tasks/taskManager.js";
 
 export function setupModalCloseHandler() {
   const modal = document.getElementById("task-modal");
@@ -34,10 +34,9 @@ export function setupExistingTaskModalHandler() {
   const form = document.getElementById("task-form"); 
   const saveBtn = document.getElementById("save-task-btn");
   const deleteBtn = document.getElementById("delete-task-btn"); 
-
+  // save changes
   saveBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-
     const title = document.getElementById("task-title").value.trim();
     const description = document.getElementById("task-desc").value.trim();
     const status = document.getElementById("task-status").value;
@@ -50,8 +49,18 @@ export function setupExistingTaskModalHandler() {
       id: parseInt(form.dataset.taskId, 10),
       title,
       description,
-      status});
+      status,
+    });
+
     modal.close();
+  });
+  // delete task
+  deleteBtn.addEventListener("click", async () => {
+    const taskId = parseInt(form.dataset.taskId, 10);
+    if (confirm("Are you sure you want to delete this task?")) {
+      await deleteTask(taskId);
+      modal.close();
+    }
   });
 }
 
