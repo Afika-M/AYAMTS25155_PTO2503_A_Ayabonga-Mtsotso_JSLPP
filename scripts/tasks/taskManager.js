@@ -5,14 +5,14 @@ import {
 import { clearExistingTasks, renderTasks } from "../ui/render.js";
 import { resetForm } from "./formUtils.js";
 
-export function addNewTask() {
+export async function addNewTask() {
   const title = document.getElementById("title-input").value.trim();
   const description = document.getElementById("desc-input").value.trim();
   const status = document.getElementById("select-status").value;
   const overlay = document.querySelector(".modal-overlay");
 
   if (!title) return;
-
+  try{
   const tasks = loadTasksFromStorage();
   const newTask = {
     id: tasks.length ? Math.max(...tasks.map((t) => t.id)) + 1 : 1,
@@ -28,4 +28,8 @@ export function addNewTask() {
   renderTasks(updatedTasks);
   resetForm();
   overlay.close();
+}catch(error){
+  console.error("Error adding new task", error);
+alert("Failed to add new task. Please try again.");
+}
 }

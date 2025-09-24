@@ -22,7 +22,7 @@ export function setupNewTaskModalHandler() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (form.checkValidity()) {
-      addNewTask();
+     addNewTask(); 
     } else {
       form.reportValidity();
     }
