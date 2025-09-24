@@ -13,7 +13,7 @@ export async function addNewTask() {
 
   if (!title) return;
   try{
-  const tasks = loadTasksFromStorage();
+  const tasks = await loadTasksFromStorage();
   const newTask = {
     id: tasks.length ? Math.max(...tasks.map((t) => t.id)) + 1 : 1,
     title,

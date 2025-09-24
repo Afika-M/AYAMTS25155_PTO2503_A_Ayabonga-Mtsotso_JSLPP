@@ -6,7 +6,7 @@ import {
 } from "./ui/modalHandlers.js";
 
 async function initTaskBoard() {
-  const tasks = loadTasksFromStorage();
+  const tasks = await loadTasksFromStorage();
   clearExistingTasks();
   renderTasks(tasks);
   setupModalCloseHandler();
