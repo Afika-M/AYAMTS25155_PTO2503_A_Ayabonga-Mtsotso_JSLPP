@@ -21,14 +21,39 @@
   <body>
     <!-- Navigation Sidebar: Contains the logo, navigation links for boards, and theme toggle. -->
     <nav class="side-bar" id="side-bar-div">
+
+      <!-- Logo -->
       <div id="side-logo-div">
         <img id="logo" src="./assets/logo-light.svg" alt="logo-light" />
       </div>
 
-      <div class="boards-nav-links-div" id="boards-nav-links-div">
-        <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
-        <button class="board-btn">Launch Career</button>
-      </div>
+    <!-- Sidebar main content -->
+     <div class="sidebar-content">
+       <div class="boards-nav-links-div" id="boards-nav-links-div">
+         <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
+         <button class="board-btn">Launch Career</button>
+       </div>
+
+       <!--Theme toggle-->
+     </div id="theme">
+       <img
+         src="./assets/icon-light-theme.svg"
+         alt="light-theme-icon"
+         class="theme-icon"
+         id="theme-icon"
+       />
+       <toggle-button class="theme-toggle"></toggle-button>
+       <img
+         src="./assets/icon-dark-theme.svg"
+         alt="dark-theme-icon"
+         class="theme-icon"
+         id="dark-theme-icon"
+        />
+       <!-- Hide sidebar button -->
+         <button class="side-bar-btn">Hide Sidebar</button>
+     </div>
+
+    
     </nav>
 
     <!-- Main Layout: Header with board title, add task button, and main content area for task columns. -->

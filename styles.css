@@ -35,12 +35,18 @@ body {
 .side-bar {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: var(--primary-color);
   border-right: 1px solid #e4ebfa; /* Light divider */
   width: var(--sidebar-width);
   height: 100vh;
 }
 
+.sidebar-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 #side-logo-div {
   margin: 33px 113px 54px 34px; /* Spacing around logo */
   display: flex;
@@ -67,7 +73,7 @@ h4 {
   letter-spacing: 0.125rem; /* Makes heading more spaced */
 }
 
-.board-btn {
+.board-btn{
   font-family: inherit;
   display: flex;
   align-items: center;
@@ -84,6 +90,23 @@ h4 {
   cursor: pointer;
   overflow: hidden; /* Prevents overflowed text/icons from showing */
 }
+.side-bar-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
+  border: none;
+  background-color: #f4f7fd;
+  color: var(--primary-btn-color);
+  border-radius: 0 100px 100px 0; /* Pill shape only on right side */
+  height: 48px;
+  width: 276px;
+  padding: 28px 12px 28px 50px;
+  font-size: 0.9375rem;
+  font-weight: bold;
+  cursor: pointer;
+  overflow: hidden; /* Prevents overflowed text/icons from showing */
+}
+
 
 /* ===============
    Main Layout
@@ -500,4 +523,8 @@ textarea {
     padding-top: 0;
     padding-bottom: 0;
   }
+  .button-group {
+    display: flex;
+    flex-direction: column;
+}
 }
