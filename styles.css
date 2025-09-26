@@ -61,7 +61,11 @@ body.dark-mode .slider{
   border-right: 1px solid #e4ebfa; /* Light divider */
   width: var(--sidebar-width);
   height: 100vh;
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000; /* Ensure sidebar is above main content */
 }
 .side-bar.hidden {
   transform: translateX(-100%); /* Slide in */
@@ -79,6 +83,7 @@ body.dark-mode .slider{
   font-size: 1.2rem;
   cursor: pointer;
   display: none; /* Hidden by default */
+  z-index: 1001; /* Above sidebar */
 }
 .show-sidebar-btn:hover {
   background-color: #A8A4FF; 
@@ -203,9 +208,16 @@ body.dark-mode .theme-toggle-btn .slider {
    Main Layout
 ================ */
 #layout {
-  flex: 1; /* Fills remaining space beside sidebar */
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  /*flex: 1; /* Fills remaining space beside sidebar */
   width: 100%;
+  min-height: 100vh;
+  transition: all 0.3s ease-in-out;
+  margin-left: 0;
+}
+/* JavaScript will add this class when sidebar is visible */
+#layout.with-sidebar {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
 }
 
 /* ===============
