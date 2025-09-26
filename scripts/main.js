@@ -6,6 +6,8 @@ import {
   setupModalCloseHandler,
   setupNewTaskModalHandler,
 } from "./ui/modalHandlers.js";
+/*import { setupMobileSidebar } from "./ui/mobileSidebar.js";*/
+
 /**
  * Initializes the task board by loading tasks, rendering them, and setting up event handlers.
  * Handles errors gracefully and logs them to the console.
@@ -19,6 +21,7 @@ async function initTaskBoard() {
   setupNewTaskModalHandler();
   setupExistingTaskModalHandler();
   setupThemeToggle();
+  /*setupMobileSidebar();*/
 }
 
 document.addEventListener("DOMContentLoaded", initTaskBoard);

@@ -40,11 +40,11 @@ body.dark-mode {
 
 body.dark-mode .side-bar-btn,
 body.dark-mode .theme-toggle-btn,
-body.dark-mode #theme {
+body.dark-mode #theme, body.dark-mode #add-new-task-btn{
   background-color: var(--primary-btn-color);
   color: #fff;
 }
-body.dark-mode .theme-toggle-btn {
+body.dark-mode .theme-toggle-btn{
   background-color: var(--primary-color);
 }
 body.dark-mode .slider{
@@ -144,7 +144,7 @@ body.dark-mode .theme-toggle-btn .slider {
   height: 48px;
   font-weight: 600;
   gap: 20px;
-  margin: 0 12px 0 12px;
+  margin: 0 20px 0 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -306,7 +306,6 @@ h2 {
 /* Remove default dialog styles */
 dialog {
   position: fixed;
-
   border: none;
   padding: 0;
   margin: 0;
@@ -326,7 +325,8 @@ dialog {
   width: 90%;
   max-width: 600px;
   padding: 24px;
-  background-color: #fff;
+  color: white;
+  background-color: var(--primary-color);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   /*font-family: "Plus Jakarta Sans", sans-serif;*/
 }
@@ -339,6 +339,7 @@ dialog {
 }
 
 .modal-header h3 {
+  color: var(--primary-font-color);
   margin: 0;
   font-size: 1.125rem;
 }
@@ -370,7 +371,7 @@ form label {
   font-size: 0.75rem;
   margin-top: 12px;
   margin-bottom: 4px;
-  color: #828fa3;
+  color: var(--secondary-font-color);
 }
 
 form input,
@@ -389,14 +390,15 @@ form select {
   appearance: none; /* Remove native arrow */
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%23828FA3" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>')
     no-repeat right 0.75rem center;
-
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
   background-size: 1.4rem;
   padding-right: 1rem;
 }
 
 #add-new-task-btn {
   background-color: var(--primary-btn-color);
-  color: white;
+  color: var(--primary-color);
   border-radius: 30px;
   border: 0;
   font-size: 16px;
@@ -428,7 +430,6 @@ form select {
   font-weight: 500;
   font-size: 14px;
   border-radius: 10px;
-
   z-index: 3;
   transition: all 0.3s ease-in;
 }
@@ -563,6 +564,13 @@ textarea {
 
 /******** Mobile ********/
 @media screen and (max-width: 576px) {
+  .header-board-name{
+    display: none;
+  }
+  .logo-mobile{
+    cursor: pointer;
+  }
+
   .card-column-main {
     grid-template-columns: minmax(
       0,
