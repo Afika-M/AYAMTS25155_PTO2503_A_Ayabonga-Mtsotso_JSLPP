@@ -13,6 +13,14 @@
   --primary-btn-color: #635fc7;
   --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015); /* Subtle shadow for card depth */
   --sidebar-width: 300px; /* Sidebar fixed width */
+
+  /* Status message variables */
+  --loading-bg: #e3f2fd;
+  --loading-color: #1976d2;
+  --loading-border: #bbdefb;
+  --error-bg: #ffebee;
+  --error-color: #d32f2f;
+  --error-border: #ffcdd2;
 }
 
 /* ================
@@ -36,6 +44,15 @@ body.dark-mode {
   --secondary-font-color: #828fa3;
   --primary-btn-color: #635fc7;
   --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015);
+
+  /* Dark mode status message variables */
+  --loading-bg: #1e3a5f;
+  --loading-color: #90caf9;
+  --loading-border: #64b5f6;
+  --error-bg: #4a1f29;
+  --error-color: #f48fb1;
+  --error-border: #e57373;
+
 }
 
 body.dark-mode .side-bar-btn,
@@ -519,6 +536,56 @@ textarea {
 }
 
 /* ========================
+   Status Message Styles
+======================== */
+
+.status-message {
+  padding: 10px;
+  margin: 10px 20px;
+  border-radius: 4px;
+  text-align: center;
+  display: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.status-message.loading {
+  display: block;
+  background-color: var(--loading-bg);
+  color: var(--loading-color);
+  border: 1px solid var(--loading-border);
+}
+
+.status-message.error {
+  display: block;
+  background-color: var(--error-bg);
+  color: var(--error-color);
+  border: 1px solid var(--error-border);
+}
+
+.status-message.loading::after {
+  content: "...";
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { color: rgba(25, 118, 210, 0); }
+  40% { color: rgba(25, 118, 210, 1); }
+  60%, 100% { color: rgba(25, 118, 210, 0); }
+}
+
+body.dark-mode .status-message.loading::after {
+  animation: dots-dark 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots-dark {
+  0%, 20% { color: rgba(144, 202, 249, 0); }
+  40% { color: rgba(144, 202, 249, 1); }
+  60%, 100% { color: rgba(144, 202, 249, 0); }
+}
+
+
+/* ========================
    Responsive Styles
 ======================== */
 
@@ -607,6 +674,10 @@ textarea {
   .side-bar {
     display: none; /* Hide sidebar on mobile */
   }
+  #layout {
+    margin: 0; /* Remove left margin when sidebar is hidden */
+    width: 100%; /* Full width */
+  }
 
   .side-bar.show-sidebar {
     display: flex !important;
@@ -618,7 +689,7 @@ textarea {
     z-index: 2000;
   }
   .logo-mobile{
-    cursor: pointer;
+    cursor: pointer; 
   }
 
   .card-column-main {

@@ -1,10 +1,15 @@
 import { fetchTasksFromApi } from "../api/taskApi.js";
+import { showLoading, showError, clearStatus } from "../ui/status.js";
+
 
 /**
  * Loads tasks from localStorage or initializes with initialTasks.
  * @returns {Array<Object>} The array of tasks.
  */
 export async function loadTasksFromStorage() {
+  // Clear any previous status before starting
+  clearStatus();
+
   const stored = localStorage.getItem("tasks");
   if (stored) {
     try {
@@ -18,20 +23,26 @@ export async function loadTasksFromStorage() {
 
   // Fetch tasks from API if localStorage is empty
   try {
-    console.log("Fetching tasks from API...");
+    showLoading("Fetching tasks from API...");
+
+    // Add a small delay to make loading state visible (optional)
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
     const apiTasks = await fetchTasksFromApi();
 
     if (Array.isArray(apiTasks) && apiTasks.length > 0) {
       console.log(" Successfully fetched tasks from API:", apiTasks.length);
       localStorage.setItem("tasks", JSON.stringify(apiTasks));
+      clearStatus();
       return apiTasks;
     } else {
       console.warn("API did not return an array. Using empty list.");
+      showError("⚠️ No tasks found from API.");
       return [];
     }
   } catch (error) {
     console.error("Error fetching tasks", error);
-    console.warn("Using empty task list due to fetch error.");
+    showError("⚠️ Failed to fetch tasks.");
     return [];
   }
 }

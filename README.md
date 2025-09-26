@@ -63,6 +63,7 @@ project-root/
 │── ui/
 │ ├── render.js
 │ ├── modalHandlers.js
+│ ├── status.js
 │ ├── sidebarManager.js
 │ ├── taskCounter.js
 │ ├── taskElement.js
