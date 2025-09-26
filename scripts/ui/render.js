@@ -2,6 +2,8 @@ import { createTaskElement } from "./taskElement.js";
 import { taskCounter } from "./taskCounter.js";
 /**
  * Finds the task container element based on task status.
+ * @param {string} status The status of the task ("todo", "doing", "done").
+ * @returns {HTMLElement|null} The container element or null if not found.
  */
 function getTaskContainerByStatus(status) {
   const column = document.querySelector(`.column-div[data-status="${status}"]`);

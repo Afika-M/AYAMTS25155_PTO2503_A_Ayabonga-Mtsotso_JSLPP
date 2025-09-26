@@ -1,5 +1,6 @@
   /**
  * Updates the column headers with task counts
+ * @param {Array} tasks Array of task objects
  */
 export function taskCounter(tasks) {
   const todoCount = tasks.filter((task) => task.status === "todo").length;

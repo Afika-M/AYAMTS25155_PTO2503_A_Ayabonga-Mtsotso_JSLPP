@@ -5,6 +5,15 @@ import {
 import { clearExistingTasks, renderTasks } from "../ui/render.js";
 import { resetForm } from "./formUtils.js";
 
+/**
+ * Adds a new task based on form input values.
+ * Validates input and updates storage and UI.
+ * Alerts user on failure.
+ * @returns {Promise<void>} A promise that resolves when the task is added.
+ * @throws Will throw an error if adding the task fails.
+ */
+
+
 export async function addNewTask() {
   const title = document.getElementById("title-input").value.trim();
   const description = document.getElementById("desc-input").value.trim();

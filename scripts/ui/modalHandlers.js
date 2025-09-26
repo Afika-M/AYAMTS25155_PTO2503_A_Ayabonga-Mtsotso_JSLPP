@@ -1,5 +1,8 @@
 import { addNewTask, updateTasks, deleteTask } from "../tasks/taskManager.js";
-
+/**
+ * Sets up the handler to close the modal when the close button is clicked.
+ * Also closes the modal when clicking outside the modal content.
+ */
 export function setupModalCloseHandler() {
   const modal = document.getElementById("task-modal");
   const closeBtn = document.getElementById("close-modal-btn");

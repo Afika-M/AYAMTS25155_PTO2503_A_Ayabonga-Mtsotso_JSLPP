@@ -6,7 +6,10 @@ import {
   setupModalCloseHandler,
   setupNewTaskModalHandler,
 } from "./ui/modalHandlers.js";
-
+/**
+ * Initializes the task board by loading tasks, rendering them, and setting up event handlers.
+ * Handles errors gracefully and logs them to the console.
+*/
 async function initTaskBoard() {
   const tasks = await loadTasksFromStorage();
 
