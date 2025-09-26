@@ -118,7 +118,7 @@ Set a custom domain (e.g., mykanban.netlify.app).
 
 ## 📸 Preview
 
-📽️ [Watch Demo on Loom]()
+📽️ [Watch Demo on Loom](https://www.loom.com/share/fb3661dc5cec4f69bd01563bd555ea62?sid=c24daba9-70e2-4791-a759-d70d4f9f450d)
  🔗 [Link to the Netlify app](https://akanbanboard.netlify.app/)  
 
 ###### Desktop view with sidebar.
