@@ -590,10 +590,14 @@ body.dark-mode .status-message.loading::after {
 ======================== */
 
 /******** Tablets ********/
-@media screen and (max-width: 1023px) {
-  /*.side-bar {
-    display: none; /* Hide sidebar on tablets and smaller 
-  }*/
+@media screen and (max-width: 1023px) and (min-width: 769px) {
+  side-bar {
+    width: 260px; /* Hide sidebar on tablets and smaller*/
+  }
+
+  .side-bar.hidden + #layout {
+    margin: 0; /* Remove left margin when sidebar is hidden */
+  }
 
   .side-bar.show-sidebar {
     display: flex !important;
@@ -667,12 +671,21 @@ body.dark-mode .status-message.loading::after {
 }
 
 /******** Mobile ********/
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   .header-board-name{
     display: none;
   }
   .side-bar {
-    display: none; /* Hide sidebar on mobile */
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 80%;
+    max-width: 300px;
+    z-index: 1001;
+    transition: left 0.3s ease;
+    background-color: var(--primary-color);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
   }
   #layout {
     margin: 0; /* Remove left margin when sidebar is hidden */
@@ -680,16 +693,23 @@ body.dark-mode .status-message.loading::after {
   }
 
   .side-bar.show-sidebar {
-    display: flex !important;
-    position: fixed;
-    top: 64px; /* below header */
-    left: 0;
-    width: 100%;
-    height: auto;
-    z-index: 2000;
+    left: 0; 
   }
+
+  .side-bar.hidden{
+    left: -100%; /* Slide out */
+  }
+
+
   .logo-mobile{
+    width: 25px;
+    height: 25px;
+    display: block;
     cursor: pointer; 
+  }
+
+  #show-sidebar-btn {
+    display: none;
   }
 
   .card-column-main {
@@ -710,7 +730,7 @@ body.dark-mode .status-message.loading::after {
 
   #add-new-task-btn::before {
     content: "+";
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
     padding-left: 14px;
     padding-right: 14px;

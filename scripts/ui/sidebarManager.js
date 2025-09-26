@@ -10,15 +10,23 @@ export function setupSidebar() {
   const showBtn = document.getElementById("show-sidebar-btn");
   const layout = document.getElementById("layout");
   const mobileLogo = document.querySelector(".logo-mobile");
+  const overlay = document.querySelector(".sidebar-overlay");
 
-  if (!sidebar || !hideBtn || !showBtn || !layout) return;
+  if (!sidebar) return;
 
   const savedState = localStorage.getItem("sidebarState");
 
   function hideSidebar() {
     sidebar.classList.add("hidden");
+    sidebar.classList.remove("show-sidebar");
     layout.classList.remove("with-sidebar");
-    showBtn.style.display = "block";
+    
+    if (window.innerWidth <= 768) {
+      showBtn.style.display = "none";
+    } else {
+      showBtn.style.display = "block";
+    }
+    
     localStorage.setItem("sidebarState", "hidden");
   }
 
@@ -26,28 +34,60 @@ export function setupSidebar() {
     sidebar.classList.remove("hidden");
     layout.classList.add("with-sidebar");
     showBtn.style.display = "none";
+    
+    if (window.innerWidth <= 768) {
+      sidebar.classList.add("show-sidebar");
+    }
+    
     localStorage.setItem("sidebarState", "visible");
   }
 
   // Mobile toggle (logo click)
   function toggleSidebarMobile() {
     if (sidebar.classList.contains("show-sidebar")) {
-      sidebar.classList.remove("show-sidebar");
-    } else {
-      sidebar.classList.add("show-sidebar");
-    }
-  }
-
-
- if (savedState === "hidden") {
       hideSidebar();
     } else {
       showSidebar();
     }
-    // Event listeners for buttons
-    hideBtn.addEventListener("click", hideSidebar);
-    showBtn.addEventListener("click", showSidebar);
-    mobileLogo.addEventListener("click", toggleSidebarMobile);
-}
+  }
 
+  // Close sidebar when clicking overlay (mobile)
+  function closeSidebarOnOverlayClick(e) {
+    if (e.target === overlay) {
+      hideSidebar();
+    }
+  }
+
+  // Initialize sidebar state
+  if (savedState === "hidden") {
+    hideSidebar();
+  } else {
+    showSidebar();
+  }
+
+  // Event listeners
+  if (hideBtn) hideBtn.addEventListener("click", hideSidebar);
+  if (showBtn) showBtn.addEventListener("click", showSidebar);
+  if (mobileLogo) mobileLogo.addEventListener("click", toggleSidebarMobile);
+  if (overlay) overlay.addEventListener("click", closeSidebarOnOverlayClick);
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      // On desktop, ensure proper sidebar state
+      if (sidebar.classList.contains('hidden')) {
+        showBtn.style.display = 'block';
+      } else {
+        showBtn.style.display = 'none';
+      }
+      sidebar.classList.remove('show-sidebar');
+    } else {
+      // On mobile, hide show button
+      showBtn.style.display = 'none';
+      if (!sidebar.classList.contains('hidden')) {
+        sidebar.classList.add('show-sidebar');
+      }
+    }
+  });
+}
 
