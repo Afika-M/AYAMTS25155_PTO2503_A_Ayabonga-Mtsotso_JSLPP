@@ -211,10 +211,9 @@ body.dark-mode .theme-toggle-btn .slider {
   /*flex: 1; /* Fills remaining space beside sidebar */
   width: 100%;
   min-height: 100vh;
-  transition: all 0.3s ease-in-out;
-  margin-left: 0;
+  transition: 0.3s ease-in-out;
 }
-/* JavaScript will add this class when sidebar is visible */
+
 #layout.with-sidebar {
   margin-left: var(--sidebar-width);
   width: calc(100% - var(--sidebar-width));
@@ -525,9 +524,9 @@ textarea {
 
 /******** Tablets ********/
 @media screen and (max-width: 1023px) {
-  .side-bar {
-    display: none; /* Hide sidebar on tablets and smaller */
-  }
+  /*.side-bar {
+    display: none; /* Hide sidebar on tablets and smaller 
+  }*/
 
   .side-bar.show-sidebar {
     display: flex !important;
@@ -535,9 +534,9 @@ textarea {
     height: auto;
   }
 
-  #side-logo-div {
+  /*#side-logo-div {
     display: none;
-  }
+  }*/
 
   .logo-mobile {
     display: block;
@@ -604,6 +603,19 @@ textarea {
 @media screen and (max-width: 576px) {
   .header-board-name{
     display: none;
+  }
+  .side-bar {
+    display: none; /* Hide sidebar on mobile */
+  }
+
+  .side-bar.show-sidebar {
+    display: flex !important;
+    position: fixed;
+    top: 64px; /* below header */
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 2000;
   }
   .logo-mobile{
     cursor: pointer;

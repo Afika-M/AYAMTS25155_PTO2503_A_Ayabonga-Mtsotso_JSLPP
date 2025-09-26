@@ -9,6 +9,7 @@ export function setupSidebar() {
   const hideBtn = document.getElementById("hide-sidebar-btn");
   const showBtn = document.getElementById("show-sidebar-btn");
   const layout = document.getElementById("layout");
+  const mobileLogo = document.querySelector(".logo-mobile");
 
   if (!sidebar || !hideBtn || !showBtn || !layout) return;
 
@@ -28,6 +29,15 @@ export function setupSidebar() {
     localStorage.setItem("sidebarState", "visible");
   }
 
+  // Mobile toggle (logo click)
+  function toggleSidebarMobile() {
+    if (sidebar.classList.contains("show-sidebar")) {
+      sidebar.classList.remove("show-sidebar");
+    } else {
+      sidebar.classList.add("show-sidebar");
+    }
+  }
+
 
  if (savedState === "hidden") {
       hideSidebar();
@@ -37,6 +47,7 @@ export function setupSidebar() {
     // Event listeners for buttons
     hideBtn.addEventListener("click", hideSidebar);
     showBtn.addEventListener("click", showSidebar);
+    mobileLogo.addEventListener("click", toggleSidebarMobile);
 }
 
 
