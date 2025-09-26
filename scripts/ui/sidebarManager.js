@@ -4,18 +4,27 @@
  * Provides functions to toggle visibility and update sidebar items.
  * Handles user interactions with the sidebar.
  */
-export function setupMobileSidebar() {
-    const sidebar = document.querySelector('.side-bar');
-    const favicon = document.querySelector('.logo-mobile');
-    const closeBtn = document.getElementById("close-modal-btn");
+export function setupSidebar() {
+  const sidebar = document.querySelector(".side-bar");
+  const hideBtn = document.getElementById("hide-sidebar-btn");
+  const showBtn = document.getElementById("show-sidebar-btn");
 
-    //Close sidebar when close button is clicked
-    closeBtn.addEventListener("click", () => sidebar.classList.remove("open")); 
+  if (!sidebar || !hideBtn || !showBtn) return;
 
-    // Open sidebar when favicon is clicked
-    if (favicon) {
-        favicon.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-        });
+  const savedState = localStorage.getItem("sidebarState");
+    if (savedState === "hidden") {
+        sidebar.classList.add("hidden");
     }
+    // hide sidebar
+  hideBtn.addEventListener("click", () => {
+    sidebar.classList.add("hidden");
+    localStorage.setItem("sidebarState", "hidden");
+  });
+
+  // show sidebar
+  showBtn.addEventListener("click", () => {
+    sidebar.classList.remove("hidden");
+    localStorage.setItem("sidebarState", "visible");
+  });
 }
+

@@ -61,6 +61,32 @@ body.dark-mode .slider{
   border-right: 1px solid #e4ebfa; /* Light divider */
   width: var(--sidebar-width);
   height: 100vh;
+  transition: transform 0.3s ease-in-out;
+}
+.side-bar.hidden {
+  transform: translateX(-100%); /* Slide in */
+}
+/* Show-sidebar floating button */
+.show-sidebar-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  background-color: var(--primary-btn-color);
+  color: var(primary-color);
+  border: none;
+  border-radius: 0 100px 100px 0;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none; /* Hidden by default */
+}
+.show-sidebar-btn:hover {
+  background-color: #A8A4FF; 
+}
+
+/* Show when sidebar is hidden */
+.side-bar.hidden ~ .show-sidebar-btn {
+  display: block;
 }
 
 .sidebar-content {
