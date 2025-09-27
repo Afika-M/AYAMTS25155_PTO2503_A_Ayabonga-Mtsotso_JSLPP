@@ -367,6 +367,28 @@ header {
   font-weight: bold;
 }
 
+.priority-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Priority colors */
+.priority-high {
+  background-color: #ea5555; /* red */
+}
+
+.priority-medium {
+  background-color: #f1c40f; /* yellow */
+}
+
+.priority-low {
+  background-color: #2ecc71; /* green */
+}
+
 /* ===============
    Headings
 ================ */
