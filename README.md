@@ -93,7 +93,7 @@ project-root/
 ### Local Setup
 1. Clone the repo:  
    ```bash
-   git clone https://github.com/Afika-M/<your-repo-name>.git
+   git clone https://github.com/Afika-M/AYAMTS25155_PTO2503_A_Ayabonga-Mtsotso_JSLPP.git
    cd AYAMTS25155_PTO2503_A_Ayabonga-Mtsotso_JSLPP
 Open index.html in your browser.
 
