@@ -11,8 +11,9 @@ export function setupSidebar() {
   const layout = document.getElementById("layout");
   const mobileLogo = document.querySelector(".logo-mobile");
   const overlay = document.querySelector(".sidebar-overlay");
+  const closeBtn = document.getElementById("close-sidebar-btn")
 
-  if (!sidebar) return;
+  if (!sidebar || !layout) return;
 
   const savedState = localStorage.getItem("sidebarState");
 
@@ -21,9 +22,13 @@ export function setupSidebar() {
     sidebar.classList.remove("show-sidebar");
     layout.classList.remove("with-sidebar");
     
+
+ 
+    // Hide overlay on mobile
     if (window.innerWidth <= 768) {
+      overlay.classList.remove("active");
       showBtn.style.display = "none";
-    } else {
+    } else{
       showBtn.style.display = "block";
     }
     
@@ -32,11 +37,13 @@ export function setupSidebar() {
 
   function showSidebar() {
     sidebar.classList.remove("hidden");
-    layout.classList.add("with-sidebar");
     showBtn.style.display = "none";
     
     if (window.innerWidth <= 768) {
       sidebar.classList.add("show-sidebar");
+      overlay.classList.add("active");
+    } else {
+      layout.classList.add("with-sidebar");
     }
     
     localStorage.setItem("sidebarState", "visible");
@@ -52,17 +59,15 @@ export function setupSidebar() {
   }
 
   // Close sidebar when clicking overlay (mobile)
-  function closeSidebarOnOverlayClick(e) {
-    if (e.target === overlay) {
-      hideSidebar();
-    }
+  function closeSidebarOnOverlayClick() {
+    hideSidebar();
   }
 
   // Initialize sidebar state
-  if (savedState === "hidden") {
-    hideSidebar();
-  } else {
+  if (window.innerWidth > 768 && savedState !== "hidden") {
     showSidebar();
+  /*} else {
+    hideSidebar();*/
   }
 
   // Event listeners
@@ -70,22 +75,27 @@ export function setupSidebar() {
   if (showBtn) showBtn.addEventListener("click", showSidebar);
   if (mobileLogo) mobileLogo.addEventListener("click", toggleSidebarMobile);
   if (overlay) overlay.addEventListener("click", closeSidebarOnOverlayClick);
+  if (closeBtn) closeBtn.addEventListener("click", hideSidebar); 
 
   // Handle window resize
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
       // On desktop, ensure proper sidebar state
+      overlay.classList.remove("active");
       if (sidebar.classList.contains('hidden')) {
         showBtn.style.display = 'block';
       } else {
+        layout.classList.add("with-sidebar");
         showBtn.style.display = 'none';
       }
       sidebar.classList.remove('show-sidebar');
     } else {
       // On mobile, hide show button
+      layout.classList.remove("with-sidebar")
       showBtn.style.display = 'none';
       if (!sidebar.classList.contains('hidden')) {
         sidebar.classList.add('show-sidebar');
+        overlay.classList.add("active");
       }
     }
   });

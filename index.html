@@ -32,8 +32,12 @@
     <!-- Sidebar main content -->
      <div class="sidebar-content">
        <div class="boards-nav-links-div" id="boards-nav-links-div">
+        <div class="boards-header">
          <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
-         <button class="board-btn">Launch Career</button>
+         <button id="close-sidebar-btn" class="close-sidebar-btn">&times;</button> 
+         </div>
+         <button class="board-btn">Launch
+            Career</button>
        </div>
 
        <!--Theme toggle-->
@@ -52,6 +56,8 @@
       </button>
      </div>
     </nav>
+    <!-- Overlay -->
+      <div id="sidebar-overlay" class="sidebar-overlay"></div>
     <!--Show sidebar button-->
     <button class="show-sidebar-btn" id="show-sidebar-btn">
         <img src="./assets/icon-show-sidebar.svg" alt="show sidebar" class="show-icon">
@@ -129,6 +135,15 @@
           <option value="doing">doing</option>
           <option value="done">done</option>
         </select>
+
+          <div class="input-div">
+            <label class="label-modal-window" for="select-priority">Priority</label>
+            <select id="select-priority" name="priority" required>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
         <div class="button-group">
           <button type="submit" class="save-btn" id="save-task-btn">
             Save Changes
@@ -188,6 +203,15 @@
             <option value="doing">doing</option>
             <option value="done">done</option>
           </select>
+
+          <div class="input-div">
+            <label class="label-modal-window" for="select-priority">Priority</label>
+              <select id="select-priority" name="priority" required>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+          </div>
         </div>
         <div class="button-group">
           <input

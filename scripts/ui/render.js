@@ -1,5 +1,7 @@
 import { createTaskElement } from "./taskElement.js";
 import { taskCounter } from "./taskCounter.js";
+import { sortTasksByPriority } from "./sortTasks.js";
+
 /**
  * Finds the task container element based on task status.
  * @param {string} status The status of the task ("todo", "doing", "done").
@@ -20,10 +22,14 @@ export function clearExistingTasks() {
 }
 
 /**
- * Renders tasks to their appropriate columns.
+ * Renders tasks to their appropriate columns sorted by priority
  */
 export function renderTasks(tasks) {
-  tasks.forEach((task) => {
+  clearExistingTasks();
+
+  const sortedTasks = sortTasksByPriority([...tasks]);
+  
+  sortedTasks.forEach((task) => {
     const container = getTaskContainerByStatus(task.status);
     if (container) {
       const taskElement = createTaskElement(task);
