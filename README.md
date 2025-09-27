@@ -64,6 +64,7 @@ project-root/
 │ ├── render.js
 │ ├── modalHandlers.js
 │ ├── status.js
+│ ├── sortTasks.js
 │ ├── sidebarManager.js
 │ ├── taskCounter.js
 │ ├── taskElement.js
